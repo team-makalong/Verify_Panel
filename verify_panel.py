@@ -20,7 +20,7 @@ class aclient(discord.Client):
         if not self.synced:
             await tree.sync()
             self.synced = True
-        print(f'{self.user}이 시작되었습니다')  
+        print(f'{self.user}이 시작되었습니다') 
         game = discord.Game('테스트')          
         await self.change_presence(status=discord.Status.idle, activity=game)
 
@@ -31,7 +31,7 @@ class password(ui.Modal, title = "패스워드 인증"):
     answer = ui.TextInput(label = "비밀번호를 입력해주세요", style = discord.TextStyle.short, required = True, min_length = 3, max_length = 30)
 
     async def on_submit(self, interaction: discord.Interaction):
-        file_path = r"C:\\Users\\helloworld\Desktop\\Team MAKALONG\\pwdata.json"
+        file_path = r"pwdata.json"
         with open(file_path, 'r') as file:
             data = json.load(file)
             try:
@@ -95,7 +95,7 @@ async def slash2(interaction: discord.Interaction, 인증방식: app_commands.Ch
         view.add_item(button1)
         await interaction.response.send_message(embed=embed,view=view)
     elif 인증방식.name == "패스워드인증":
-        file_path = r"C:\\Users\\helloworld\Desktop\\Team MAKALONG\\pwdata.json"
+        file_path = r"pwdata.json"
         with open(file_path, 'r') as file:
             data = json.load(file)
             try:
@@ -106,7 +106,7 @@ async def slash2(interaction: discord.Interaction, 인증방식: app_commands.Ch
                 return
             await interaction.response.send_modal(password())
     elif 인증방식.name == "프라이빗인증":
-        file_path = r"C:\\Users\\helloworld\Desktop\\Team MAKALONG\\pvdata.json"
+        file_path = r"pvdata.json"
 
         with open(file_path, 'r') as file:
             data = json.load(file)
